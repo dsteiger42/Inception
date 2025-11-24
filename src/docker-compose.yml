@@ -7,7 +7,7 @@ services:
         image: nginx:inception # name and tag of the Docker image from which the container is created
         env_file: .env
         ports:
-            - "433:433" # "host port : container port"
+            - "443:443" # "host port : container port"
         networks:
             - inception
         volumes:
@@ -54,8 +54,6 @@ volumes:
             type: none
             o: bind
             device: ./data/db
-
-
 
     wordpress:
         driver: local
