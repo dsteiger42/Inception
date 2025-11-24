@@ -11,7 +11,7 @@ services:
         networks:
             - inception
         volumes:
-            - 
+            - wordpress:/var/www/html
         restart: on-failure # restarts the container in case of crash
 
     mariadb:
@@ -24,7 +24,7 @@ services:
         networks:
             - inception
         volumes:
-            - 
+            - db:/var/lib/mysql
         restart: on-failure
 
     wordpress:
@@ -37,7 +37,7 @@ services:
         networks:
            - inception
         volumes:
-            -
+            - wordpress:/var/www/html
         restart: on-failure
 
 
@@ -48,18 +48,18 @@ networks:
 
 # volumes are like files in your computer that containers can read and write. It stores data, even after containers are deleted
 volumes:
-    wordpress_db:
+    db:
         driver: local
         driver_opts:
             type: none
             o: bind
-            device: ./data/wordpress_db
+            device: ./data/db
 
 
 
-    wordpress_files:
+    wordpress:
         driver: local
         driver_opts:
             type: none
             o: bind
-            device: ./data/wordpress_files
+            device: ./data/wordpress
