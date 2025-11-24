@@ -1,0 +1,65 @@
+services:
+    nginx: # this is just a compose identifier, not the actual name of the container
+        container_name: nginx
+        build: # specifies how to build a custom image from a Dockerfile
+            context: ./requirements/nginx # is the folder where Docker looks for the Dockerfile and any files referenced in it.
+            dockerfile: Dockerfile # tells Docker which file to use. If your file is called Dockerfile, this line is optional
+        image: nginx:inception # name and tag of the Docker image from which the container is created
+        env_file: .env
+        ports:
+            - "433:433" # "host port : container port"
+        networks:
+            - inception
+        volumes:
+            - 
+        restart: on-failure # restarts the container in case of crash
+
+    mariadb:
+        container_name: mariadb
+        build:
+            context: ./requirements/mariadb
+            dockerfile: Dockerfile
+        image: mariadb:inception
+        env_file: .env
+        networks:
+            - inception
+        volumes:
+            - 
+        restart: on-failure
+
+    wordpress:
+        container_name: wordpress
+        build:
+            context: ./requirements/wordpress
+            dockerfile: Dockerfile
+        image: wordpress:inception
+        env_file: .env
+        networks:
+           - inception
+        volumes:
+            -
+        restart: on-failure
+
+
+networks:
+    inception:
+        driver: bridge # standard network type for communication inside a host
+
+
+# volumes are like files in your computer that containers can read and write. It stores data, even after containers are deleted
+volumes:
+    wordpress_db:
+        driver: local
+        driver_opts:
+            type: none
+            o: bind
+            device: ./data/wordpress_db
+
+
+
+    wordpress_files:
+        driver: local
+        driver_opts:
+            type: none
+            o: bind
+            device: ./data/wordpress_files
