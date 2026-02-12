@@ -3,7 +3,7 @@ services:
         container_name: nginx
         build: # specifies how to build a custom image from a Dockerfile
             context: ./requirements/nginx # is the folder where Docker looks for the Dockerfile and any files referenced in it.
-            dockerfile: Dockerfile # tells Docker which file to use. If your file is called Dockerfile, this line is optional
+            dockerfile: Dockerfile # tells Docker which file to use. If my file is called Dockerfile, this line is optional
         image: nginx:inception # name and tag of the Docker image from which the container is created
         env_file: .env
         ports:

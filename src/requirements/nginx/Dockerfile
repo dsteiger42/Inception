@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y nginx openssl \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 # copiar o ficheiro que configura o nginx
-COPY ./conf/nginx.conf /etc/nginx/nginx1.conf
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 
 # port 80 is the normal web trafic port for HTTP. 443 for HTTPS
 EXPOSE 80 443
