@@ -1,18 +1,18 @@
 services:
-    nginx: # this is just a compose identifier, not the actual name of the container
+    nginx: # this is just a compose identifier, not the actual name of the container.
         container_name: nginx
-        build: # specifies how to build a custom image from a Dockerfile
+        build: # specifies how to build a custom image from a Dockerfile.
             context: ./requirements/nginx # is the folder where Docker looks for the Dockerfile and any files referenced in it.
-            dockerfile: Dockerfile # tells Docker which file to use. If my file is called Dockerfile, this line is optional
-        image: nginx:inception # name and tag of the Docker image from which the container is created
-        env_file: .env
+            dockerfile: Dockerfile # tells Docker which file to use. If my file is called Dockerfile, this line is optional.
+        image: nginx:inception # name and tag of the Docker image from which the container is created.
+        env_file: .env # tells Docker Compose to load environment variables from .env and inject them into the container.
         ports:
-            - "443:443" # "host port : container port"
+            - "443:443" # "host port : container port".
         networks:
             - inception
         volumes:
             - wordpress:/var/www/html
-        restart: on-failure # restarts the container in case of crash
+        restart: on-failure # restarts the container in case of crash.
 
     mariadb:
         container_name: mariadb
@@ -43,17 +43,18 @@ services:
 
 networks:
     inception:
-        driver: bridge # standard network type for communication inside a host
+        driver: bridge # standard network type for internal communication.
 
 
-# volumes are like files in your computer that containers can read and write. It stores data, even after containers are deleted
+# volumes are like files in your computer that containers can read and write. It stores data, even after containers are deleted.
+# we use volumes so we can manage this info ourselves. If Docker does it, we dont have access to it.
 volumes:
     db:
-        driver: local
+        driver: local # uses Docker’s local storage driver.
         driver_opts:
-            type: none
-            o: bind
-            device: ./data/db
+            type: none # no special filesystem type.
+            o: bind # creates/uses an existing folder (the name is below) that manages the volume, instead of being Docker the one to manage it.
+            device: ./data/db # it will store all the database (posts, users, comments etc).
 
     wordpress:
         driver: local
