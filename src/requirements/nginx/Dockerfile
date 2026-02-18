@@ -3,7 +3,7 @@
 FROM debian:oldstable
 
 # openssl is for TSLv1.3 do allow for private keys, and encryptic stuff.
-# 2nd line - store the ssl keys and certs / store the php files and what the user requests.
+# 3rd line - store the ssl keys and certs / store the php files and what the user requests.
 # last line is to delete cache
 RUN apt-get update && apt-get upgrade && apt-get install -y nginx openssl \
     && mkdir -p /etc/nginx/ssl /var/www/html \
@@ -14,11 +14,11 @@ RUN apt-get update && apt-get upgrade && apt-get install -y nginx openssl \
         -out /etc/nginx/ssl/nginx.cert \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
-# copiar o ficheiro que configura o nginx
+# copies the file that configures nginx, to the container
 COPY tools/nginx.conf /etc/nginx/nginx.conf
 
 # port 80 is the normal web trafic port for HTTP. 443 for HTTPS
-EXPOSE 80 443
+EXPOSE 443
 
 # ["executable", "param1", "param2"]A
 # daemon off means to run a program in the foreground instead of the background

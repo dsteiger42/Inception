@@ -17,4 +17,5 @@ EOF
 	mysqld --user=mysql --bootstrap < $TMPFILE
 	rm -f $TMPFILE
 fi
-mysqld --user=mysql --console
+# --console runs it in the foreground
+mysqld --user=mysql --console 
