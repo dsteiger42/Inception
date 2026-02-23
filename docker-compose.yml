@@ -8,6 +8,8 @@ services:
         env_file: .env # tells Docker Compose to load environment variables from .env and inject them into the container.
         ports:
             - "443:443" # "host port : container port".
+        depends_on:
+            - wordpress
         networks:
             - inception
         volumes:
@@ -34,6 +36,8 @@ services:
             dockerfile: Dockerfile
         image: wordpress:inception
         env_file: .env
+        depends_on:
+            - mariadb
         networks:
            - inception
         volumes:
