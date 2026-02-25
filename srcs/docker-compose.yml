@@ -58,11 +58,11 @@ volumes:
         driver_opts:
             type: none # no special filesystem type.
             o: bind # creates/uses an existing folder (the name is below) that manages the volume, instead of being Docker the one to manage it.
-            device: ./data/db # it will store all the database (posts, users, comments etc).
+            device: ./srcs/data/db # it will store all the database (posts, users, comments etc).
 
     wordpress:
         driver: local
         driver_opts:
             type: none
             o: bind
-            device: ./data/wordpress
+            device: ./srcs/data/wordpress

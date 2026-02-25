@@ -17,7 +17,6 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 
 RUN mkdir -p /run/php
 
-# Copiar script de inicialização
 COPY tools/entry.sh /etc/entry.sh
 RUN chmod +x /etc/entry.sh
 ENTRYPOINT [ "bash", "/etc/entry.sh" ]
