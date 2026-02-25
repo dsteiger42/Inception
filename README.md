@@ -5,9 +5,20 @@ DESCRIPTION:
     Docker’s purpose is to package an application together with everything it needs to run (code, runtime, system libraries, config) into a container so it runs the same way everywhere.
     In Inception, we run three containers (NGINX, MariaDB and Wordpress) to run a full WordPress website with Nginx and MariaDB.
 
-    NGINX - Intermediary server that connects the User with Wordpress.
-    Wordpress - Application that creates a website. It uses a database to store content.
-    MariaDB - Database that provides the content for Wordpress.
+    Concepts:
+        - Docker Image: Is a blueprint of an application. It's what contains all the code, dependencies, configurations, that will be used to run your program. Images are used to create containers.
+
+        - Docker Container: A Docker container is a running instance of a Docker image. It is what actually runs the application.
+
+        - Docker Volume: Files that store persistent data. They are independent of Docker containers. Ex: a database uses a volume to store its data.
+
+        - Docker-Compose: Tool used to define and run multiple Docker containers together. It allows containers to communicate through a shared network.
+
+        - NGINX: Intermediary server that connects the User with Wordpress.
+
+        - Wordpress: Application that creates a website. It uses a database to store content.
+
+        - MariaDB: Database that provides the content for Wordpress.
 
     Extra Concepts:
         ---VIRTUAL MACHINE VS DOCKER---
@@ -80,21 +91,23 @@ DESCRIPTION:
             - Bind mounts are used to store the database and WordPress data in this project. 
             - This allows direct access to the files on the host while still keeping data persistent between container restarts.
 
-INTRUCTIONS:
-    - Concepts:
-        -Docker Image: Is a blueprint of an application. It's what contains all the code, dependencies, configurations, that will be used to run your program. Images are used to create containers.
+INSTRUCTIONS:
 
-        -Docker Container: A Docker container is a running instance of a Docker image. It is what actually runs the application.
-
-        -Docker Volume: Files that store persistent data. They are independent of Docker containers. Ex: a database uses a volume to store its data.
-
-        -Docker-Compose: Tool used to define and run multiple Docker containers together. It allows containers to communicate through a shared network.
+    - make prep: create volumes.
+    - make build: build Docker images.
+    - make up: start the services in the Docker-Compose file. Creates and starts the containers.
+    - make down: stops containers.
+    - make clean: deletes everything.
+    - make fclean: deletes everything the subject tells us to delete before starting an evaluation.
+    - make logs SERVICE="...": check a container's logs.
+    - make exec SERVICE='...": enter inside a container.
+    - make restart: restart containers.
 
 
 RESOURCES:
-    - Youtube - used to learn all the concepts related to Docker.
-    - AI - was used mainly for the scripts and configuration files.
-    - https://tuto.grademe.fr/inception/ - provides a clear and easy to follow explanation of the project.
+    - Youtube: used to learn all the concepts related to Docker.
+    - AI: was used mainly for the scripts and configuration files.
+    - https://tuto.grademe.fr/inception/: provides a clear and easy to follow explanation of the project.
 
 
 EXTRA:
