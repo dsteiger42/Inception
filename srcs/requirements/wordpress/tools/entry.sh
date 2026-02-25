@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Set up WordPress using WP-CLI
 if [ ! -f /var/www/html/wp-config.php ]; then
 
     wp core download --allow-root
