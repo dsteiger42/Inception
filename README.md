@@ -88,8 +88,7 @@ DESCRIPTION:
             - Requires manual permission handling.
 
         Design Choice:
-            - Bind mounts are used to store the database and WordPress data in this project. 
-            - This allows direct access to the files on the host while still keeping data persistent between container restarts.
+            - Subject does not allow bind mounts.
 
 INSTRUCTIONS:
 

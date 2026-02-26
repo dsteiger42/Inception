@@ -18,4 +18,4 @@ RUN mkdir -p /run/php
 
 COPY tools/entry.sh /etc/entry.sh
 RUN chmod +x /etc/entry.sh
-ENTRYPOINT [ "bash", "/etc/entry.sh" ]
+ENTRYPOINT [ "sh", "/etc/entry.sh" ]

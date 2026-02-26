@@ -10,4 +10,4 @@ RUN chmod +x /etc/entry.sh
 
 EXPOSE 3306
 
-ENTRYPOINT ["bash", "/etc/entry.sh"];
+ENTRYPOINT ["sh", "/etc/entry.sh"];

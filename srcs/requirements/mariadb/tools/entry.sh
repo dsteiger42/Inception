@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if ! [ -d "/var/lib/mysql/$MYSQL_DATABASE" ]; then
     service mariadb start
