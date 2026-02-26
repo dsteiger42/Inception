@@ -51,10 +51,20 @@ networks:
 
 
 # volumes are like files in your computer that containers can read and write. It stores data, even after containers are deleted.
-# we use volumes so we can manage this info ourselves. If Docker does it, we dont have access to it.
+# These are Docker named volumes using the local driver with bind options.
+# Docker manages the volume lifecycle, while the data is stored in
+# host directories (/home/login/data) as required by the subject.
 volumes:
     db:
         driver: local # uses Docker’s local storage driver.
+        driver_opts:
+            type: none
+            o: bind
+            device: /home/dsteiger/data/mariadb # it will store all the database (posts, users, comments etc).
 
     wordpress:
         driver: local
+        driver_opts:
+            type: none
+            o: bind
+            device: /home/dsteiger/data/wordpress # it will store all the WordPress files (themes, plugins, uploads etc).

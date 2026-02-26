@@ -1,12 +1,18 @@
 COMPOSE = docker-compose -f ./srcs/docker-compose.yml
-VOLUMES = ./srcs/data/db ./srcs/data/wordpress
+VOLUMES = /home/dsteiger/data/mariadb /home/dsteiger/data/wordpress
 SERVICES = wordpress mariadb nginx
+
+prep:
+	@echo "Creating Volumes directories..."
+	mkdir -p $(VOLUMES)
+	sudo chown -R 33:33 $(VOLUMES)
+	sudo chmod -R 755 $(VOLUMES)
 	
-build:
+build: prep
 	@echo "Building images..."
 	$(COMPOSE) build
 
-up:
+up: prep
 	@echo "Creating containers..."
 	$(COMPOSE) up -d
 
@@ -18,6 +24,7 @@ clean:
 	@echo "Cleaning Docker..."
 	$(COMPOSE) down -v
 	docker system prune -f
+	sudo rm -rf $(VOLUMES)
 
 fclean:
 	@echo "Cleaning everything..."

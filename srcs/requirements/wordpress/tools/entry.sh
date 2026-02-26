@@ -1,5 +1,10 @@
 #!/bin/sh
 
+echo "Waiting for MariaDB..."
+until mysql -h "$WORDPRESS_DB_HOST" -u"$WORDPRESS_DB_USER" -p"$WORDPRESS_DB_PASSWORD" -e "SELECT 1;" &> /dev/null; do
+    sleep 1
+done
+
 if [ ! -f /var/www/html/wp-config.php ]; then
 
     wp core download --allow-root
