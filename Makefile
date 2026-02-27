@@ -5,14 +5,14 @@ SERVICES = wordpress mariadb nginx
 prep:
 	@echo "Creating Volumes directories..."
 	mkdir -p $(VOLUMES)
-	sudo chown -R 33:33 $(VOLUMES)
+	sudo chown -R 999:999 $(VOLUMES)
 	sudo chmod -R 755 $(VOLUMES)
 	
 build: prep
 	@echo "Building images..."
 	$(COMPOSE) build
 
-up: prep
+up:
 	@echo "Creating containers..."
 	$(COMPOSE) up -d
 
