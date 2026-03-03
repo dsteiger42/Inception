@@ -1,7 +1,5 @@
 #!/bin/sh
 
-echo "MariaDB is ready!"
-
 if ! [ -d "/var/lib/mysql/$MYSQL_DATABASE" ]; then
     service mariadb start
 
